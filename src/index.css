@@ -64,7 +64,6 @@
     letter-spacing: -0.02em;
   }
 
-  /* Visible, high-contrast keyboard focus everywhere */
   :focus-visible {
     outline: 2px solid var(--color-volt-500);
     outline-offset: 3px;
@@ -89,6 +88,7 @@
 }
 
 /* ── Utilities ─────────────────────────────────────────────── */
+
 @utility label-mono {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
@@ -98,15 +98,21 @@
   font-weight: 500;
 }
 
+/*
+  Wider main content container.
+  Keeps the complete layout centered.
+*/
 @utility shell {
   width: 100%;
-  max-width: 84rem;
+  max-width: 96rem;
   margin-inline: auto;
   padding-inline: 1.25rem;
+  box-sizing: border-box;
 }
 
 @utility rule-grid {
-  background-image: linear-gradient(
+  background-image:
+    linear-gradient(
       to right,
       color-mix(in oklab, var(--color-mist-300) 55%, transparent) 1px,
       transparent 1px
@@ -116,11 +122,13 @@
       color-mix(in oklab, var(--color-mist-300) 55%, transparent) 1px,
       transparent 1px
     );
+
   background-size: 96px 96px;
 }
 
 @utility rule-grid-dark {
-  background-image: linear-gradient(
+  background-image:
+    linear-gradient(
       to right,
       rgba(255, 255, 255, 0.055) 1px,
       transparent 1px
@@ -130,6 +138,7 @@
       rgba(255, 255, 255, 0.055) 1px,
       transparent 1px
     );
+
   background-size: 96px 96px;
 }
 
@@ -139,7 +148,8 @@
   }
 }
 
-/* ── Components (layered so utilities always win) ──────────── */
+/* ── Components ───────────────────────────────────────────── */
+
 @layer components {
   .streak-band {
     position: absolute;
@@ -151,6 +161,7 @@
   .reveal {
     opacity: 0;
     transform: translateY(18px);
+
     transition:
       opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
       transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
@@ -164,7 +175,9 @@
   .draw-path {
     stroke-dasharray: 1400;
     stroke-dashoffset: 1400;
-    transition: stroke-dashoffset 2.1s cubic-bezier(0.16, 1, 0.3, 1);
+
+    transition:
+      stroke-dashoffset 2.1s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .is-in .draw-path,
@@ -172,22 +185,31 @@
     stroke-dashoffset: 0;
   }
 
+  /* ── Buttons ───────────────────────────────────────────── */
+
   .btn {
     position: relative;
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
     gap: 0.6rem;
+
     padding: 0.95rem 1.5rem;
+
     font-size: 0.875rem;
     font-weight: 500;
     letter-spacing: 0.01em;
     line-height: 1.2;
+
     border: 1px solid transparent;
     border-radius: 2px;
+
     cursor: pointer;
     overflow: hidden;
     text-align: center;
+
     transition:
       background-color 0.25s ease,
       color 0.25s ease,
@@ -208,22 +230,28 @@
     background: var(--color-volt-600);
   }
 
-  /* the momentum sweep inside primary buttons */
   .btn-primary::after {
     content: "";
+
     position: absolute;
     top: -60%;
     bottom: -60%;
+
     width: 22%;
     left: -30%;
+
     transform: rotate(18deg);
+
     background: linear-gradient(
       to bottom,
       transparent,
       rgba(255, 90, 31, 0.9),
       transparent
     );
-    transition: left 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+
+    transition:
+      left 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+
     pointer-events: none;
   }
 
@@ -243,12 +271,16 @@
   .btn-ghost {
     background: transparent;
     color: currentColor;
-    border-color: color-mix(in oklab, currentColor 28%, transparent);
+
+    border-color:
+      color-mix(in oklab, currentColor 28%, transparent);
   }
 
   .btn-ghost:hover {
     border-color: currentColor;
-    background: color-mix(in oklab, currentColor 8%, transparent);
+
+    background:
+      color-mix(in oklab, currentColor 8%, transparent);
   }
 
   .btn[disabled] {
@@ -256,10 +288,15 @@
     cursor: not-allowed;
   }
 
+  /* ── Normal cards ─────────────────────────────────────── */
+
   .edge-card {
     position: relative;
+
     border: 1px solid var(--color-mist-200);
+
     background: var(--color-mist-0);
+
     transition:
       border-color 0.3s ease,
       background-color 0.3s ease;
@@ -267,32 +304,56 @@
 
   .edge-card::before {
     content: "";
+
     position: absolute;
+
     left: -1px;
     top: 0;
     bottom: 0;
+
     width: 2px;
+
     background: var(--color-volt-500);
+
     transform: scaleY(0);
     transform-origin: top;
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+
+    transition:
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .edge-card:hover {
-    border-color: color-mix(in oklab, var(--color-ink-900) 16%, transparent);
+    border-color:
+      color-mix(in oklab, var(--color-ink-900) 16%, transparent);
   }
 
   .edge-card:hover::before {
     transform: scaleY(1);
   }
 
+  /*
+    ───────────────────────────────────────────────
+    MAIN DARK BOX
+    Wider + centered + responsive
+    ───────────────────────────────────────────────
+  */
+
   .edge-card-dark {
+    width: 100%;
+    max-width: 96rem;
+
+    margin-inline: auto;
+
+    box-sizing: border-box;
+
     border: 1px solid rgba(255, 255, 255, 0.1);
+
     background: linear-gradient(
       180deg,
       rgba(255, 255, 255, 0.035),
       rgba(255, 255, 255, 0.008)
     );
+
     transition:
       border-color 0.3s ease,
       background-color 0.3s ease;
@@ -302,14 +363,22 @@
     border-color: rgba(255, 255, 255, 0.24);
   }
 
+  /* ── Form fields ──────────────────────────────────────── */
+
   .field {
     width: 100%;
+
     background: #fff;
+
     border: 1px solid var(--color-mist-300);
     border-radius: 2px;
+
     padding: 0.8rem 0.9rem;
+
     font-size: 0.9375rem;
+
     color: var(--color-ink-900);
+
     transition:
       border-color 0.2s ease,
       box-shadow 0.2s ease,
@@ -326,33 +395,92 @@
 
   .field:focus {
     outline: none;
+
     border-color: var(--color-volt-500);
-    box-shadow: 0 0 0 3px rgba(42, 91, 255, 0.14);
+
+    box-shadow:
+      0 0 0 3px rgba(42, 91, 255, 0.14);
   }
 
   .field[aria-invalid="true"] {
     border-color: var(--color-streak-600);
-    box-shadow: 0 0 0 3px rgba(255, 90, 31, 0.12);
+
+    box-shadow:
+      0 0 0 3px rgba(255, 90, 31, 0.12);
   }
+
+  /* ── Skip link ─────────────────────────────────────────── */
 
   .skip-link {
     position: absolute;
+
     left: -9999px;
     top: 0;
+
     z-index: 100;
   }
 
   .skip-link:focus {
     left: 1rem;
     top: 1rem;
+
     background: #fff;
     color: #080b10;
+
     padding: 0.75rem 1rem;
+
     border: 1px solid #080b10;
   }
 }
 
-/* ── Reduced motion ────────────────────────────────────────── */
+/* ── Responsive box sizing ───────────────────────────────── */
+
+/*
+  Desktop:
+  Large and balanced box.
+*/
+
+@media (min-width: 1200px) {
+  .edge-card-dark {
+    width: 100%;
+    max-width: 96rem;
+  }
+}
+
+/*
+  Tablet:
+  Prevent the box from touching screen edges.
+*/
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .edge-card-dark {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/*
+  Mobile:
+  Full width with small side spacing.
+*/
+
+@media (max-width: 767px) {
+  .shell {
+    padding-inline: 1rem;
+  }
+
+  .edge-card-dark {
+    width: 100%;
+    max-width: 100%;
+
+    margin-inline: auto;
+
+    border-radius: 0;
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
