@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -31,8 +32,9 @@
   --color-streak-500: #ff5a1f;
   --color-streak-600: #e34410;
 
-  --font-display: "Space Grotesk", "Space Grotesk Fallback", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
+  /* Fonts */
+  --font-display: "Lora", serif;
+  --font-sans: "Lora", serif;
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
@@ -58,7 +60,7 @@
   h4,
   h5 {
     font-family: var(--font-display);
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: -0.02em;
   }
 
@@ -109,13 +111,25 @@
       color-mix(in oklab, var(--color-mist-300) 55%, transparent) 1px,
       transparent 1px
     ),
-    linear-gradient(to bottom, color-mix(in oklab, var(--color-mist-300) 55%, transparent) 1px, transparent 1px);
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--color-mist-300) 55%, transparent) 1px,
+      transparent 1px
+    );
   background-size: 96px 96px;
 }
 
 @utility rule-grid-dark {
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.055) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.055) 1px,
+      transparent 1px
+    );
   background-size: 96px 96px;
 }
 
@@ -203,7 +217,12 @@
     width: 22%;
     left: -30%;
     transform: rotate(18deg);
-    background: linear-gradient(to bottom, transparent, rgba(255, 90, 31, 0.9), transparent);
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(255, 90, 31, 0.9),
+      transparent
+    );
     transition: left 0.55s cubic-bezier(0.22, 1, 0.36, 1);
     pointer-events: none;
   }
@@ -269,7 +288,11 @@
 
   .edge-card-dark {
     border: 1px solid rgba(255, 255, 255, 0.1);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.008));
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.035),
+      rgba(255, 255, 255, 0.008)
+    );
     transition:
       border-color 0.3s ease,
       background-color 0.3s ease;
